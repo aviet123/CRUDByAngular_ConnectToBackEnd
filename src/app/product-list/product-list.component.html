@@ -1,0 +1,56 @@
+<div class="container custom-container-2">
+
+    <!-- Show it when there is no employee -->
+    <div class="no-data text-center">
+        <p>There is no product added yet!</p>
+        <a class="btn btn-outline-primary" [routerLink]="['/create-product']">Add Empoyee</a>
+    </div>
+
+    <!-- Employees list table, it hides when there is no employee -->
+    <div>
+        <h3 class="mb-3 text-center">Products List</h3>
+
+        <div class="container custom-container">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="name" name="name" class="form-control" (keyup)="search()">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-success btn-lg btn-block" (click)="search()">Search Products</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Product Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of Products">
+                        <td>{{product.id}}</td>
+                        <td>{{product.name}}</td>
+                        <td>
+                            <button class="btn btn-dark" (click)="getProduct(product.id)" [routerLink]="['/edit-product',product.id]">Edit</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-light" (click)="getProduct(product.id)" [routerLink]="['/product-details',product.id]">Details</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
